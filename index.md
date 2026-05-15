@@ -6,13 +6,6 @@
 
 > **Website setup notes:** Replace every `TODO` link or image path with your final GitHub Pages assets. The images below assume you place the provided images in an `assets/` folder next to `index.html`.
 
-<div class="video-block">
-  <p><strong>Demo video:</strong> <a href="TODO_PASTE_DEMO_VIDEO_LINK_HERE">Watch our project in action</a></p>
-  <!-- Optional YouTube embed:
-  <iframe width="560" height="315" src="https://www.youtube.com/embed/TODO_VIDEO_ID" title="Team 8 Demo Video" frameborder="0" allowfullscreen></iframe>
-  -->
-</div>
-
 ---
 
 ## 1. Introduction
@@ -97,8 +90,6 @@ The final system has five main layers:
 3. **Cross-robot visual matching:** ORB features are extracted from RGB images. A brute-force Hamming matcher proposes feature matches, and RANSAC filters geometrically inconsistent correspondences. The system publishes visual match diagnostics and optional sparse `PointCloud2` reconstruction.
 4. **Semantic occupancy mapping:** RGB images are processed with HSV thresholds to detect colored cones and dark obstacles. Detections are projected into a 2D grid using approximate camera geometry and updated with log-odds evidence.
 5. **Greedy Bezier navigation:** The mapper samples a fan of short Bezier curves, scores each path for novelty, clearance, goal progress, and turning cost, then publishes the best path. The follower uses a lookahead controller and recovery behavior to publish `cmd_vel`.
-
-![ArUco alignment and architecture scribble](assets/architecture_scribbles.png)
 
 ### Major Design Trade-Offs
 
@@ -368,35 +359,29 @@ The strongest result was not a perfect global map. The strongest result was that
 
 ![System architecture diagram](assets/system_architecture.png)
 
-**ArUco alignment and odom reporter design:**
-
-![Architecture scribbles](assets/architecture_scribbles.png)
-
-**Multi-robot camera and namespace debugging:**
-
-![Camera driver debugging](assets/camera_driver_debug.png)
-
 **TODO: Add final RViz screenshot here**
 
 ![RViz demo screenshot](assets/TODO_rviz_demo.png)
 
-**TODO: Add robot demo photo here**
-
-![Two TurtleBots demo photo](assets/TODO_robot_demo_photo.png)
-
 ### Video
 
-The final website should include at least one video showing the system running. The video should ideally show:
+<div class="video-block">
+  <p><strong>Demo video:</strong>
+    <a href="https://youtube.com/shorts/IdI-ieeSuZ4">
+      Watch our project in action
+    </a>
+  </p>
 
-1. Kiwi and Cherry visible in the workspace;
-2. the shared ArUco marker being detected;
-3. RViz showing both robots in the common frame;
-4. ORB/RANSAC match or sparse reconstruction output;
-5. semantic obstacle detection or the occupancy grid;
-6. the generated Bezier path;
-7. the robot moving or stopping/recovering around obstacles.
+  <iframe
+    width="800"
+    height="450"
+    src="https://www.youtube.com/embed/IdI-ieeSuZ4"
+    title="Team 8 Demo Video"
+    frameborder="0"
+    allowfullscreen>
+  </iframe>
+</div>
 
-**Demo video link:** [TODO: paste final video URL](TODO_PASTE_DEMO_VIDEO_LINK_HERE)
 
 ---
 
@@ -456,29 +441,27 @@ With more time, the most valuable improvements would be:
 6. **Dynamic obstacle tracking:** Track moving obstacles over time instead of only marking local occupancy.
 7. **Improved demo tooling:** Add launch presets, parameter files, and scripts for easier setup in different rooms.
 
-![Future extensions](assets/future_extensions.png)
-
 ---
 
 ## 6. Team
 
-> **TODO:** Please review this section before submission and adjust the contribution details if your team wants a different allocation.
+> **TODO:**
 
 ### Janus Sucharitakul
 
-Janus worked on the multi-robot perception and alignment architecture, including the ArUco-based shared-frame alignment, odometry reporting, TF integration, ORB/RANSAC visual matching, sparse reconstruction diagnostics, and overall system integration.
+Janus worked on ...
 
 ### Ethan Gale
 
-Ethan worked on the navigation side of the project, including semantic obstacle mapping, occupancy grid generation, greedy Bezier path planning, and the local follower/control logic used to convert paths into robot motion.
+Ethan worked on ...
 
 ### Kelvin Huang
 
-Kelvin contributed to the two-robot integration effort, including bringup, testing, ROS 2 namespace debugging, camera/camera-info routing, demo preparation, and debugging the system across the physical robots.
+Kelvin worked on ...
 
 ### Yhuin Ong
 
-Yhuin contributed to the project design, presentation/report organization, testing, and system validation, with emphasis on explaining the original goals, redesign decisions, difficulties, and final cooperative robotics pipeline.
+Yhuin worked on ...
 
 ---
 
@@ -508,19 +491,6 @@ Final project/src/ros2_aruco_interfaces/msg/ArucoMarkers.msg
 
 A typical workflow is:
 
-```bash
-cd "Final project"
-colcon build
-source install/setup.bash
-ros2 launch multi_robot_slam two_robots.launch.py \
-  robot_a_namespace:=kiwi \
-  robot_b_namespace:=cherry \
-  start_ekf:=true \
-  start_orb:=true \
-  start_orb_reconstruction:=true \
-  start_semantic_mapper:=true
-```
-
 The provided `run.sh` script automates a fuller tmux-based launch that starts the main system, separate ArUco detectors for Kiwi and Cherry, and RViz.
 
 ### Hardware and Component References
@@ -534,17 +504,9 @@ The provided `run.sh` script automates a fuller tmux-based launch that starts th
 - RViz
 - `robot_localization` EKF package
 
-### CAD Models
+### Presentation slides:
 
-No custom CAD models were required for the final prototype.
-
-### Additional Videos and Images
-
-- Demo video: [TODO: paste link](TODO_PASTE_DEMO_VIDEO_LINK_HERE)
-- Presentation slides: [TODO: paste link](TODO_PASTE_SLIDES_LINK_HERE)
-- RViz screenshot: `assets/TODO_rviz_demo.png`
-- Robot demo photo: `assets/TODO_robot_demo_photo.png`
-- Sparse reconstruction screenshot: `assets/TODO_sparse_reconstruction.png`
+ - [Google Slides Presentation](https://docs.google.com/presentation/d/1cBIB4ztT8RqXpRIiAGmnrTajGa6IkmavPpeQABbGh9Y/edit?usp=sharing)
 
 ---
 
